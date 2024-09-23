@@ -56,7 +56,7 @@ public class AboutPage extends AppCompatActivity {
         webview.setWebViewClient(new WebViewClientDemo());
         AndroidInterface androidInterface = new AndroidInterface(this);
         webview.addJavascriptInterface(androidInterface, "AndroidInterface");
-        webview.setBackgroundColor(getResources().getColor(R.color.mainBG));
+        webview.setBackgroundColor(getResources().getColor(R.color.AboutBG));
 
         webview.loadUrl("file:///android_asset/pages/AboutPage.html");
 
