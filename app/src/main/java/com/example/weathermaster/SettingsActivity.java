@@ -149,6 +149,9 @@ public class SettingsActivity extends AppCompatActivity {
                     } else if (color.equals("OpenLanguagesPage")){
                         openLanguagesPage();
                         return;
+                    } else if (color.equals("openHomelocationPage")){
+                        openHomelocationPage();
+                        return;
                     } else if (color.equals("bluesetDef")) {
 
                         return;
@@ -216,6 +219,11 @@ public class SettingsActivity extends AppCompatActivity {
         }
         public void openLanguagesPage() {
             Intent intent = new Intent(sActivity, LanguagePage.class);
+            sActivity.startActivity(intent);
+        }
+
+        public void openHomelocationPage() {
+            Intent intent = new Intent(sActivity, Homelocations.class);
             sActivity.startActivity(intent);
         }
 
