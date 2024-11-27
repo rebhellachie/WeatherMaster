@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="snackbar_background">#e3e2e8</color>
+    <color name="snackbar_text">#2f3035</color>
+
+    <!--   bg-colors -->
+    <color name="C01d">#001d33</color>
+    <color name="C01n">#001d33</color>
+    <color name="C02d">#001d33</color>
+    <color name="C02n">#001d33</color>
+    <color name="C03d">#0e1d2a</color>
+    <color name="C03n">#0e1d2a</color>
+    <color name="C04d">#0e1d2a</color>
+    <color name="C04n">#0e1d2a</color>
+    <color name="C09d">#0e1d2a</color>
+    <color name="C09n">#0e1d2a</color>
+    <color name="C10d">#0e1d2a</color>
+    <color name="C10n">#0e1d2a</color>
+    <color name="C11d">#0e1d2a</color>
+    <color name="C11n">#0e1d2a</color>
+    <color name="C13d">#1f1f30</color>
+    <color name="C13n">#1f1f30</color>
+    <color name="C50d">#191209</color>
+    <color name="C50n">#191209</color>
+
+
+    <color name="mainBG">#121317</color>
+    <color name="MoonPhase">#2b226f</color>
+    <color name="forecastPageBg">#334151</color>
+    <color name="RadarPage">#1a110f</color>
+    <color name="AboutBG">#101510</color>
+    <color name="conditionBG">#191113</color>
+    <color name="diffDefault">#0e1d2a</color>
+
+
+    <!--  default fallback  -->
+    <color name="colorPrimary">#ffb5a0</color>
+    <color name="colorOnPrimary">#561f0f</color>
+    <color name="colorPrimaryContainer">#723523</color>
+    <color name="colorOnPrimaryContainer">#ffdbd1</color>
+
+    <color name="colorSecondary">#e7bdb2</color>
+    <color name="colorOnSecondary">#442a22</color>
+    <color name="colorSecondaryContainer">#5d4037</color>
+    <color name="colorOnSecondaryContainer">#ffdbd1</color>
+
+    <color name="colorTertiary">#d8c58d</color>
+    <color name="colorOnTertiary">#3b2f05</color>
+    <color name="colorTertiaryContainer">#534619</color>
+    <color name="colorOnTertiaryContainer">#f5e1a7</color>
+
+    <color name="colorBackground">#1a110f</color>
+    <color name="colorOnBackground">#f1dfda</color>
+    <color name="colorSurface">#1a110f</color>
+    <color name="colorOnSurface">#f1dfda</color>
+
+    <color name="colorSurfaceContainer">#271d1b</color>
+
+    <color name="colorSurfaceVariant">#1a110f</color>
+    <color name="colorOnSurfaceVariant">#d8c2bc</color>
+
+    <color name="colorError">#ffb4ab</color>
+    <color name="colorOnError">#690005</color>
+
+
+
+</resources>
