@@ -150,6 +150,9 @@ public class WeatherWidgetProvider extends AppWidgetProvider {
             views.setImageViewResource(R.id.weather_icon_hour3, iconResIdHour3);
             views.setTextViewText(R.id.hour_3_time, hour_3_time);
 
+            Intent intent = new Intent(context, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+            views.setOnClickPendingIntent(R.id.widget_layout, pendingIntent);
 
             appWidgetManager.updateAppWidget(widgetId, views);
         }
