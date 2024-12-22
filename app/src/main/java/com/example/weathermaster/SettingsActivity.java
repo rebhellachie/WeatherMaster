@@ -558,6 +558,9 @@ public class SettingsActivity extends AppCompatActivity {
                     } else if (color.equals("openWeatherModels")){
                         openWeatherModels();
                         return;
+                    } else if (color.equals("EditAppLayoutPage")){
+                        EditAppLayoutPage();
+                        return;
                     } else if (color.equals("bluesetDef")) {
                         return;
                     } else if (color.equals("keepiton")) {
@@ -634,6 +637,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         public void openWeatherModels() {
             Intent intent = new Intent(sActivity, WeatherModels.class);
+            sActivity.startActivity(intent);
+        }
+
+        public void EditAppLayoutPage() {
+            Intent intent = new Intent(sActivity, ArrangeItems.class);
             sActivity.startActivity(intent);
         }
 
