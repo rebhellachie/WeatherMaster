@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.pranshulgg.weathermaster.R
 import com.pranshulgg.weathermaster.core.model.domain.AppWeatherUnits
 import com.pranshulgg.weathermaster.core.model.domain.Weather
@@ -36,16 +37,11 @@ import com.pranshulgg.weathermaster.core.utils.weather.airquality.AirQualityColo
 
 @Composable
 fun RainBlock(
-    weather: Weather,
+    rainForTheDay: Double,
     context: Context,
-    dailyIndex: Int,
     units: AppWeatherUnits
 ) {
 
-    val rainForTheDay = UnitConverter.convertPrecipitation(
-        weather.daily[dailyIndex].rainSum,
-        PrecipitationUnits.MM, units.precipitationUnit
-    )
 
     Surface(
         color = MaterialTheme.colorScheme.surface,
@@ -61,7 +57,7 @@ fun RainBlock(
             Column(
                 Modifier
                     .align(Alignment.BottomEnd)
-                    .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+                    .padding(bottom = 16.dp)
             ) {
 
                 Row(
@@ -71,7 +67,8 @@ fun RainBlock(
                 ) {
                     Text(
                         "$rainForTheDay",
-                        modifier = Modifier.alignByBaseline(),
+                        modifier = Modifier
+                            .alignByBaseline(),
                         textAlign = TextAlign.End,
                         color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.displayMedium
@@ -79,7 +76,9 @@ fun RainBlock(
                     Gap(horizontal = 2.dp)
                     Text(
                         units.precipitationUnit.toName(context, true),
-                        modifier = Modifier.alignByBaseline(),
+                        modifier = Modifier
+                            .alignByBaseline()
+                            .padding(end = 16.dp),
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -87,9 +86,12 @@ fun RainBlock(
 
                 Gap(3.dp)
                 Text(
-                    stringResource(R.string.weather_rain_today_amount),
-                    modifier = Modifier.fillMaxWidth(),
+                    stringResource(R.string.weather_total_rain_day),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, end = 16.dp),
                     textAlign = TextAlign.End,
+                    lineHeight = 16.sp,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.bodyLarge
                 )
