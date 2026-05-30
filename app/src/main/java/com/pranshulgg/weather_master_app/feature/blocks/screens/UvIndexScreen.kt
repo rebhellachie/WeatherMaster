@@ -37,6 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.graphics.toColor
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.pranshulgg.weather_master_app.R
@@ -140,7 +141,7 @@ fun UvIndexScreen(navController: NavController, index: Int = 0, locationId: Stri
                         headlineContent = { Text(it.toLabel(context)) },
                         trailingContent = {
                             Text(
-                                getUvIndexValuesFor(it),
+                                getUvIndexScaleFor(it),
                                 color = MaterialTheme.colorScheme.onSurface,
                                 style = MaterialTheme.typography.bodyLarge
                             )
@@ -154,7 +155,7 @@ fun UvIndexScreen(navController: NavController, index: Int = 0, locationId: Stri
     }
 }
 
-fun getUvIndexValuesFor(index: UvIndex): String {
+fun getUvIndexScaleFor(index: UvIndex): String {
     return when (index) {
         UvIndex.LOW -> "1 - 2"
         UvIndex.MODERATE -> "3 - 5"
@@ -215,19 +216,19 @@ private fun BarChart(
                                 Text(
                                     item.toString(),
                                     fontSize = 24.sp,
-                                    color = getUvColor(item)
+                                    color = getUvIndex(item).toColor()
                                 )
                             },
-                            barBackgroundColor = getUvColor(item),
-                            shapeColor = getShapeColor(item),
+                            barBackgroundColor = getUvIndex(item).toColor(),
+                            shapeColor = MaterialTheme.colorScheme.surface,
                             height = height
                         )
                         Gap(5.dp)
                         Text(
                             time,
                             color = MaterialTheme.colorScheme.onSurface,
-                            style = MaterialTheme.typography.bodyMedium,
                             fontWeight = FontWeight.Bold,
+                            fontSize = 17.sp,
                             textAlign = TextAlign.Center
                         )
 
@@ -240,23 +241,6 @@ private fun BarChart(
     }
 }
 
-@Composable
-private fun getUvColor(value: Int): Color {
-    return when {
-        value <= 3 -> MaterialTheme.colorScheme.primaryContainer
-        value <= 7 -> MaterialTheme.colorScheme.tertiaryContainer
-        else -> MaterialTheme.colorScheme.errorContainer
-    }
-}
-
-@Composable
-private fun getShapeColor(value: Int): Color {
-    return when {
-        value <= 3 -> MaterialTheme.colorScheme.onPrimaryContainer
-        value <= 7 -> MaterialTheme.colorScheme.onTertiaryContainer
-        else -> MaterialTheme.colorScheme.onErrorContainer
-    }
-}
 
 @Composable
 private fun Header(max: String, maxSuffix: String) {
@@ -271,7 +255,7 @@ private fun Header(max: String, maxSuffix: String) {
         Row() {
             Text(
                 max,
-                color = MaterialTheme.colorScheme.primaryContainer,
+                color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.displayLarge,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.alignByBaseline(),
@@ -284,7 +268,6 @@ private fun Header(max: String, maxSuffix: String) {
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.alignByBaseline(),
             )
-
         }
     }
 }
