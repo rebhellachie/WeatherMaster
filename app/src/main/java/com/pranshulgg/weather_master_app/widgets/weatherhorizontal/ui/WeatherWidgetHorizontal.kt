@@ -12,6 +12,7 @@ import androidx.glance.layout.Column
 import androidx.glance.layout.Row
 import androidx.glance.layout.Spacer
 import androidx.glance.layout.fillMaxSize
+import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
 import androidx.glance.layout.padding
 import androidx.glance.layout.size
@@ -47,10 +48,10 @@ fun WeatherWidgetHorizontal(
             Spacer(GlanceModifier.width(12.dp))
             Column() {
                 Text(
-                    state.locationName,
+                    state.currentTemp,
                     style = TextStyle(
                         color = textColor,
-                        fontSize = 16.sp,
+                        fontSize = 24.sp,
                         fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Start
                     )
@@ -62,15 +63,12 @@ fun WeatherWidgetHorizontal(
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
                         textAlign = TextAlign.Start
-                    )
+                    ),
+                    maxLines = 2
                 )
             }
             Spacer(GlanceModifier.defaultWeight())
-            Text(
-                state.currentTemp,
-                style = TextStyle(color = textColor, fontWeight = FontWeight.Bold, fontSize = 48.sp)
-            )
-            Spacer(GlanceModifier.width(8.dp))
+
             Column() {
                 Text(
                     state.daily.first().tempMax,
@@ -89,11 +87,6 @@ fun WeatherWidgetHorizontal(
                     )
                 )
             }
-//            Spacer(GlanceModifier.width(6.dp))
-//
-//            Spacer(GlanceModifier.defaultWeight())
-//            WidgetMinMaxTemp(state.daily.first().tempMin, state.daily.first().tempMax)
-
         }
 }
 
