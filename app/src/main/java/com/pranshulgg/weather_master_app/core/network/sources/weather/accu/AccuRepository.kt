@@ -5,16 +5,13 @@ import com.pranshulgg.weather_master_app.core.model.domain.location.Location
 import com.pranshulgg.weather_master_app.core.model.weather.WeatherResult
 import com.pranshulgg.weather_master_app.core.model.weather.WeatherResultType
 import com.pranshulgg.weather_master_app.core.network.sources.weather.accu.json.bundle.AccuWeatherBundle
-import com.pranshulgg.weather_master_app.core.network.sources.weather.bmkg.BmkgApi
-import com.pranshulgg.weather_master_app.core.network.sources.weather.bmkg.json.bundle.BmkgForecastBundle
 import com.pranshulgg.weather_master_app.core.utils.weather.cache.isWeatherCacheSafe
 import com.pranshulgg.weather_master_app.core.utils.weather.cache.shouldReturnWeatherCache
-import com.pranshulgg.weather_master_app.data.local.dao.airquality.accu.AccuDao
+import com.pranshulgg.weather_master_app.data.local.dao.location.LocationKeysDao
 import com.pranshulgg.weather_master_app.data.local.dao.location.LocationsDao
 import com.pranshulgg.weather_master_app.data.local.dao.weather.WeatherDao
-import com.pranshulgg.weather_master_app.data.local.entity.airquality.accu.AccuEntity
+import com.pranshulgg.weather_master_app.data.local.entity.location.LocationKeyEntity
 import com.pranshulgg.weather_master_app.data.local.mapper.weather.sources.accu.toDomain
-import com.pranshulgg.weather_master_app.data.local.mapper.weather.sources.bmkg.toDomain
 import com.pranshulgg.weather_master_app.data.local.mapper.weather.toCurrentWeatherEntity
 import com.pranshulgg.weather_master_app.data.local.mapper.weather.toDailyWeatherEntity
 import com.pranshulgg.weather_master_app.data.local.mapper.weather.toDomain
@@ -22,7 +19,6 @@ import com.pranshulgg.weather_master_app.data.local.mapper.weather.toHourlyWeath
 import com.pranshulgg.weather_master_app.data.repository.WeatherRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.net.UnknownHostException
 import javax.inject.Inject
 
 
@@ -30,7 +26,7 @@ class AccuRepository @Inject constructor(
     val dao: LocationsDao,
     val weatherDao: WeatherDao,
     val api: AccuApi,
-    val accuDao: AccuDao,
+    val locationKeysDao: LocationKeysDao,
 ) : WeatherRepository {
 
 
@@ -55,7 +51,7 @@ class AccuRepository @Inject constructor(
 
             return@withContext try {
 
-                val locationKey = accuDao.getCityKeyForLocation(location.id)?.cityKey
+                val locationKey = locationKeysDao.getCityKeyForLocation(location.id)?.cityKey
                     ?: api.getLocationKey("${location.latitude},${location.longitude}").body()?.key
                     ?: return@withContext WeatherResult.Error(exception = AppException.Unknown())
 
@@ -83,8 +79,8 @@ class AccuRepository @Inject constructor(
 
                 val domain = final.toDomain(location)
 
-                accuDao.insertCityKey(
-                    AccuEntity(
+                locationKeysDao.insertCityKey(
+                    LocationKeyEntity(
                         locationId = location.id,
                         cityKey = locationKey
                     )
