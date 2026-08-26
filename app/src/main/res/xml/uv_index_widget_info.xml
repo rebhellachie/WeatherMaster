@@ -4,4 +4,5 @@
     android:minHeight="100dp"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen"
+    android:previewImage="@drawable/uv_index_widget_preview"
     android:configure="com.pranshulgg.weather_master_app.widgets.config.WidgetConfigActivity" />
